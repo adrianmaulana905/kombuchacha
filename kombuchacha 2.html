@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kombuchacha — From Waste to Wellness</title>
+
+  <!-- GOOGLE FONTS: SANS-SERIF + MONTSERRAT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=sans-serif&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --orange:  #FFA93F;
+      --wine:    #D04F68;
+      --cherry:  #FF8A9E;
+      --tahiti:  #93D7B1;
+      --gold:    #FFD966;
+      --green:   #5D8B57;
+      --dark-green: #2D4A29;
+      --cream:   #FDF6EC;
+      --white:   #FFFFFF;
+
+      --font-display: 'Sans-serif
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--dark-green);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 4px; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ===================== NAVBAR ===================== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 5%;
+      background: rgba(93,139,87,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--gold);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo span {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--dark-green) !important;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 800 !important;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 rgba(0,0,0,0.2) !important;
+    }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0; right: 0;
+      background: var(--dark-green);
+      padding: 1.5rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1rem;
+      border-bottom: 3px solid var(--gold);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 5% 5rem;
+      position: relative;
+      background: var(--green);
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--orange); top: -150px; right: -100px; }
+    .blob-2 { width: 400px; height: 400px; background: var(--gold); bottom: -100px; left: -80px; }
+    .blob-3 { width: 250px; height: 250px; background: var(--tahiti); top: 40%; left: 10%; }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark-green);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.8rem, 8vw, 6.8rem);
+      line-height: 0.92;
+      color: var(--cream);
+      text-shadow: 4px 4px 0 var(--dark-green);
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title .accent { color: var(--orange); }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      color: var(--tahiti);
+      margin: 1rem 0 1.8rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+      letter-spacing: 1px;
+    }
+
+    .hero-desc {
+      color: rgba(253,246,236,0.9);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+      font-weight: 500;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--dark-green);
+      box-shadow: 0 4px 0 #b8701a, 0 6px 20px rgba(255,169,63,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2.5px solid var(--cream);
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .logo-frame {
+      position: relative;
+      width: min(420px, 90vw);
+    }
+    .logo-frame img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      border: 3px dashed rgba(255,217,102,0.4);
+      animation: spin 20s linear infinite;
+    }
+    .logo-ring-2 {
+      position: absolute;
+      inset: -40px;
+      border-radius: 50%;
+      border: 2px dashed rgba(147,215,177,0.3);
+      animation: spin 30s linear infinite reverse;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(253,246,236,0.6);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 2.5px solid rgba(253,246,236,0.5);
+      border-bottom: 2.5px solid rgba(253,246,236,0.5);
+      transform: rotate(45deg);
+      animation: bounce 1.6s infinite;
+    }
+
+    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave svg { display: block; }
+
+    /* ===================== SECTION COMMON ===================== */
+    #about, #products, #process, #order, #contact {
+      padding: 6rem 5%;
+      background: var(--cream);
+    }
+
+    .section-tag {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--wine);
+      margin-bottom: 0.5rem;
+      display: block;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--dark-green);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section-title .hl { color: var(--orange); }
+
+    /* ===================== ABOUT ===================== */
+    .about-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-grid p {
+      color: #4a4a4a;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    /* ===================== PRODUCTS ===================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.12), 0 10px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 0 rgba(0,0,0,0.12), 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .product-img {
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+    }
+
+    .product-body {
+      background: var(--white);
+      padding: 2rem;
+    }
+
+    .product-flavor {
+      font-size: 0.9rem;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--dark-green);
+      margin-bottom: 0.8rem;
+    }
+
+    .product-desc {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.3rem;
+      font-weight: 500;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--orange);
+    }
+
+    .product-badge {
+      background: var(--tahiti);
+      color: var(--dark-green);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===================== PROCESS ===================== */
+    #process {
+      padding: 6rem 5%;
+      background: linear-gradient(180deg, var(--cream) 0%, #f0efe6 100%);
+    }
+
+    .process-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 56px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: repeating-linear-gradient(to right, var(--orange) 0%, var(--orange) 20px, transparent 20px, transparent 30px);
+    }
+
+    .process-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s;
+    }
+    .process-step:hover .step-circle { transform: scale(1.1); }
+
+    .step-circle.s1 { background: var(--orange); }
+    .step-circle.s2 { background: var(--wine); }
+    .step-circle.s3 { background: var(--tahiti); }
+    .step-circle.s4 { background: var(--gold); }
+    .step-circle.s5 { background: var(--green); }
+
+    .process-step h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--dark-green);
+      margin-bottom: 0.4rem;
+    }
+
+    .process-step p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ===================== ORDER ===================== */
+    #order {
+      background: var(--orange);
+    }
+
+    .order-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-form {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group { margin-bottom: 1.3rem; }
+
+    .form-group label {
+      display: block;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--dark-green);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 2.5px solid #e8e0d5;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--dark-green);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+      font-weight: 600;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+    }
+
+    .form-group textarea {
+      height: 110px;
+      resize: vertical;
+    }
+
+    .qty-item {
+      border: 2.5px solid #e8e0d5;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      background: #fff5e8;
+      margin-bottom: 1.5rem;
+    }
+
+    .qty-item .qty-emoji { font-size: 2rem; display: block; }
+    .qty-item .qty-name {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--dark-green);
+      display: block;
+      margin-top: 0.2rem;
+      letter-spacing: 1px;
+    }
+    .qty-item .qty-price {
+      font-size: 0.95rem;
+      color: var(--orange);
+      font-weight: 800;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    .price-box {
+      background: var(--cream);
+      border: 2px dashed #d6c8b7;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .price-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #555;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .price-total {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      color: var(--dark-green);
+      margin-top: 0.4rem;
+    }
+
+    .btn-order {
+      width: 100%;
+      padding: 1rem;
+      background: var(--green);
+      color: var(--cream);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 0 var(--dark-green);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 var(--dark-green);
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact {
+      background: var(--dark-green);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    #contact .section-title {
+      color: var(--cream);
+    }
+
+    .contact-desc {
+      font-size: 1.05rem;
+      color: rgba(253,246,236,0.75);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .social-btn {
+      text-decoration: none;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 1.2rem 1.6rem;
+      min-width: 270px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-4px);
+      border-color: var(--orange);
+      background: rgba(255,255,255,0.13);
+    }
+
+    .social-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .social-icon.ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .social-icon.tt {
+      background: #000;
+    }
+
+    .social-text {
+      text-align: left;
+    }
+
+    .social-platform {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(253,246,236,0.6);
+    }
+
+    .social-handle {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-top: 0.1rem;
+    }
+
+    /* ===================== TOAST ===================== */
+    .toast {
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      background: var(--green);
+      color: var(--cream);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      max-width: 320px;
+    }
+    .toast.show { transform: translateX(0); }
+
+    /* ===================== ANIMATIONS ===================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-18px); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(8px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-btns { justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; gap: 1.5rem; }
+      .process-steps::before { display: none; }
+      .process-step { display: flex; align-items: flex-start; gap: 1rem; text-align: left; padding: 0; }
+      .step-circle { margin: 0; flex-shrink: 0; width: 56px; height: 56px; font-size: 1.4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="toast" id="toast">🎉 Pesanan diterima! Kami akan segera menghubungi kamu.</div>
+
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <img src="KOMBU_CHACHA.png" alt="Kombuchacha Logo" />
+      <span>KOMBUCHACHA</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#products">Produk</a></li>
+      <li><a href="#process">Proses</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#order" class="nav-cta">🛒 Order</a></li>
+    </ul>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobileMenu()">Tentang</a>
+    <a href="#products" onclick="closeMobileMenu()">Produk</a>
+    <a href="#process" onclick="closeMobileMenu()">Proses</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="#order" onclick="closeMobileMenu()">🛒 Order Sekarang</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-badge">🍍 Kulit Nanas Lokal</span>
+        <h1 class="hero-title">KOMBU<br><span class="accent">CHACHA</span></h1>
+        <p class="hero-subtitle">— From Waste to Wellness —</p>
+
+        <p class="hero-desc">
+          Kombuchacha adalah minuman fermentasi berbahan kulit nanas segar yang mengubah limbah organik menjadi minuman premium bernilai tinggi.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#order" class="btn btn-primary">🛒 Pesan Sekarang</a>
+          <a href="#products" class="btn btn-outline">Lihat Produk</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="logo-frame">
+          <div class="logo-ring"></div>
+          <div class="logo-ring-2"></div>
+          <img src="KOMBU_CHACHA.png" alt="Kombuchacha" />
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <div class="wave" style="background:var(--green); margin-top: -1px;">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FDF6EC"/>
+    </svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <span class="section-tag reveal">✨ Our Story</span>
+    <h2 class="section-title reveal">FROM <span class="hl">WASTE</span> TO <span class="hl">WELLNESS</span></h2>
+
+    <div class="about-grid reveal">
+      <p>
+        Kombuchacha lahir dari keprihatinan terhadap limbah kulit nanas yang sering terbuang percuma.
+        Kami mengolahnya menjadi minuman fermentasi yang sehat dan bernilai tinggi.
+      </p>
+      <p>
+        Produk ini mengangkat ide “from waste to wellness”, yaitu mengolah sisa bahan pangan meniadi minuman yang memilliki nilal fungsional, visual, sosial. Kombuchachacha bukan hanya menjual minuman, tetapi juga menawarkan gaya hidup vang lebin sadar kesehatan dan dan lingkungan.
+      </p>
+    </div>
+  </section>
+
+  <div class="wave" style="background:var(--cream);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#2D4A29"/>
+    </svg>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <span class="section-tag reveal">🍃 Product</span>
+    <h2 class="section-title reveal">KOMBUCHACHA<br><span class="hl">SPECIAL DRINK</span></h2>
+
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <div class="product-img">🍍</div>
+        <div class="product-body">
+          <div class="product-flavor">Original Kombucha</div>
+          <div class="product-name">KOMBUCHACHA</div>
+          <p class="product-desc">
+            Kombucha kulit nanas premium dengan rasa segar alami,
+            dibuat dengan proses fermentasi terkontrol untuk menghasilkan minuman sehat dan menyegarkan.
+          </p>
+          <div class="product-footer">
+            <span class="product-price">Rp 70.000</span>
+            <span class="product-badge">BUY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave" style="background:var(--cream);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f0efe6"/>
+    </svg>
+  </div>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <span class="section-tag reveal">⚗️ Proses Pembuatan</span>
+    <h2 class="section-title reveal">Dari Kulit Nanas<br>Jadi <span class="hl">Minuman Fermentasi</span></h2>
+
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-circle s1">🍍</div>
+        <div>
+          <h4>Seleksi Bahan</h4>
+          <p>Kulit nanas segar dipilih dari petani lokal Indonesia</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-circle s2">🫧</div>
+        <div>
+          <h4>Perebusan</h4>
+          <p>Direbus untuk mengekstrak rasa dan nutrisi secara optimal</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-circle s3">🧪</div>
+        <div>
+          <h4>Fermentasi</h4>
+          <p>Difermentasi selama 14+ hari dengan kontrol suhu dan rasa</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-circle s4">🧫</div>
+        <div>
+          <h4>Quality Check</h4>
+          <p>Setiap batch diuji rasa, aroma, dan kualitas minuman</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-circle s5">📦</div>
+        <div>
+          <h4>Pengemasan</h4>
+          <p>Dikemas dalam botol eco-friendly, siap dikirimkan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave" style="background:var(--cream);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="var(--orange)"/>
+    </svg>
+  </div>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="order-inner">
+      <h2 class="section-title reveal" style="color: var(--dark-green);">ORDER<br>KOMBUCHACHA</h2>
+
+      <div class="order-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="name" placeholder="Nama kamu..." />
+          </div>
+          <div class="form-group">
+            <label>Nomor WhatsApp</label>
+            <input type="tel" id="phone" placeholder="08xx-xxxx-xxxx" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Alamat Pengiriman</label>
+          <input type="text" id="address" placeholder="Jalan, Kelurahan, Kota..." />
+        </div>
+
+        <div class="form-group">
+          <label>Produk</label>
+          <div class="qty-item">
+            <span class="qty-emoji">🍍</span>
+            <span class="qty-name">KOMBUCHACHA</span>
+            <span class="qty-price">Rp 70.000 / botol</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Jumlah Botol</label>
+          <input type="number" id="qty" placeholder="Contoh: 3" min="1" value="1" oninput="updateTotal()" />
+        </div>
+
+        <div class="price-box">
+          <div class="price-label">Total Harga</div>
+          <div class="price-total" id="totalPrice">Rp 70.000</div>
+        </div>
+
+        <div class="form-group" style="margin-top:1.5rem;">
+          <label>Catatan Pesanan (Opsional)</label>
+          <textarea id="notes" placeholder="Misalnya: kirim pagi hari, dll..."></textarea>
+        </div>
+
+        <button class="btn-order" onclick="submitOrder()">
+          🛒 Kirim Pesanan
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <span class="section-tag reveal">📲 Contact</span>
+    <h2 class="section-title reveal">FOLLOW<br><span class="hl">KOMBUCHACHA</span></h2>
+
+    <p class="contact-desc reveal">
+      Yuk terhubung dengan Kombuchacha untuk update promo, info produk terbaru, dan konten behind the scenes!
+    </p>
+
+    <div class="social-links reveal">
+      <a class="social-btn" href="https://instagram.com/kombuchacha.ind" target="_blank">
+        <div class="social-icon ig">📸</div>
+        <div class="social-text">
+          <div class="social-platform">Instagram</div>
+          <div class="social-handle">@kombuchacha.ind</div>
+        </div>
+      </a>
+
+      <a class="social-btn" href="https://tiktok.com/@kombuchacha24" target="_blank">
+        <div class="social-icon tt">🎵</div>
+        <div class="social-text">
+          <div class="social-platform">TikTok</div>
+          <div class="social-handle">@kombuchacha24</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    const PRICE_PER_BOTTLE = 70000;
+
+    function formatRupiah(num) {
+      return "Rp " + num.toLocaleString("id-ID");
+    }
+
+    function updateTotal() {
+      const qty = parseInt(document.getElementById("qty").value) || 0;
+      const total = qty * PRICE_PER_BOTTLE;
+      document.getElementById("totalPrice").innerText = formatRupiah(total);
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      ham.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    }
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    function submitOrder() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const qty = parseInt(document.getElementById('qty').value);
+      const notes = document.getElementById('notes').value;
+
+      if (!name || !phone || !address || !qty || qty < 1) {
+        alert('⚠️ Mohon lengkapi nama, nomor WhatsApp, alamat, dan jumlah botol ya!');
+        return;
+      }
+
+      const total = qty * PRICE_PER_BOTTLE;
+
+      const waMsg = encodeURIComponent(
+        `Halo Kombuchacha! 🍍\n\nSaya ingin memesan:\n\n` +
+        `👤 Nama: ${name}\n` +
+        `📱 WhatsApp: ${phone}\n` +
+        `📍 Alamat: ${address}\n` +
+        `🛒 Produk: KOMBUCHACHA\n` +
+        `📦 Jumlah: ${qty} botol\n` +
+        `💰 Total Harga: ${formatRupiah(total)}\n` +
+        `📝 Catatan: ${notes || '-'}\n\n` +
+        `Mohon konfirmasi pesanan saya ya! Terima kasih 🙏`
+      );
+
+      showToast();
+
+      setTimeout(() => {
+        window.open(`https://wa.me/6281234567890?text=${waMsg}`, '_blank');
+      }, 1200);
+    }
+
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(45,74,41,0.97)';
+      } else {
+        nav.style.background = 'rgba(93,139,87,0.92)';
+      }
+    });
+
+    // Init total
+    updateTotal();
+  </script>
+
+</body>
+</html>
